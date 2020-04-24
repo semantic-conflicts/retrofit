@@ -42,3 +42,4 @@ License
 
  [1]: http://square.github.io/retrofit/
  [2]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.squareup.retrofit&a=retrofit&v=LATEST
+ 
