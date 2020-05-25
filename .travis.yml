@@ -1,8 +1,26 @@
+
+sudo: required
 language: java
 
-branches:
-  except:
-    - gh-pages
+jdk:
+  - openjdk8
 
-notifications:
-  email: false
+script:
+  - mvn clean compile assembly:single
+
+before_deploy:
+    - mkdir MiningBuild
+    - find . -name '*.jar' -exec cp {} ./MiningBuild \;
+    - cd /home/travis/build/semantic-conflicts/retrofit/MiningBuild
+    - tar -zcvf result.tar.gz *
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: result.tar.gz
+  name: fetchjar-dep-2b6c719c6645f8e48dca6d0047c752069d321bc4
+  file_glob: true
+  overwrite: true
+  skip_cleanup: true
+  on:
+    all_branches: true 
+            
